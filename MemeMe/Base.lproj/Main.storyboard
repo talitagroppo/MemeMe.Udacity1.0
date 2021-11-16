@@ -92,7 +92,6 @@
                             <constraint firstItem="M6f-17-g3j" firstAttribute="leading" secondItem="UHI-1s-4zX" secondAttribute="leading" id="z98-yf-dtQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EV6-oo-aUE"/>
                     <connections>
                         <outlet property="albunsButton" destination="LJg-KB-jz5" id="sWj-4N-X7x"/>
                         <outlet property="bottomTextField" destination="UHI-1s-4zX" id="Vdn-Ja-SES"/>
@@ -110,8 +109,7 @@
         <!--Image View Controller-->
         <scene sceneID="qJQ-Oi-mBF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nid-LM-ds4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="IeI-hw-wGC" customClass="ImageViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageViewController" id="IeI-hw-wGC" customClass="ImageViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SyC-pJ-BI3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,7 +121,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Mw-yn-JFF" customClass="ImagesCollection" customModule="MemeMe" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImagesCollection" reuseIdentifier="ImagesCollection" id="5Mw-yn-JFF" customClass="ImagesCollection" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="3gB-mB-bDz" customClass="ImagesCollection" customModule="MemeMe" customModuleProvider="target">
@@ -136,14 +134,20 @@
                                         </imageView>
                                     </subviews>
                                     <connections>
-                                        <outlet property="imageCollectionView" destination="Y9b-Nz-ELt" id="jo2-SM-FR1"/>
+                                        <outlet property="imageCollectionView" destination="Y9b-Nz-ELt" id="sgM-1z-PvX"/>
                                     </connections>
                                 </collectionViewCellContentView>
+                                <connections>
+                                    <outlet property="imageCollectionView" destination="Y9b-Nz-ELt" id="pQZ-wn-3pJ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="O7w-EM-hJh"/>
+                    <connections>
+                        <outlet property="collectionView" destination="SyC-pJ-BI3" id="bbx-Dy-WuZ"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nid-LM-ds4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4.3478260869565224" y="37.5"/>
         </scene>
