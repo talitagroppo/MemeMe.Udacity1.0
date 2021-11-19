@@ -25,36 +25,9 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1yl-wU-Rde"/>
-                                    <barButtonItem title="Save" id="EVi-bX-Ixn">
+                                    <barButtonItem systemItem="cancel" id="EVi-bX-Ixn" userLabel="Cancel">
                                         <connections>
-                                            <action selector="save:" destination="BYZ-38-t0r" id="5ue-bx-a7R"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <toolbarAppearance key="compactAppearance">
-                                    <barButtonItemAppearance key="buttonAppearance">
-                                        <barButtonItemStateAppearance key="normal"/>
-                                        <barButtonItemStateAppearance key="highlighted"/>
-                                        <barButtonItemStateAppearance key="disabled"/>
-                                        <barButtonItemStateAppearance key="focused"/>
-                                    </barButtonItemAppearance>
-                                </toolbarAppearance>
-                            </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhG-nZ-RZc">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="pYF-7V-6kY"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="folder" catalog="system" springLoaded="YES" id="LJg-KB-jz5">
-                                        <connections>
-                                            <action selector="pickAnLibraryImage:" destination="BYZ-38-t0r" id="20b-5E-ZRD"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EG1-pg-Rgd"/>
-                                    <barButtonItem image="camera" catalog="system" springLoaded="YES" id="f8W-uD-8w6">
-                                        <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="CaW-vj-aBz"/>
+                                            <action selector="cancel:" destination="BYZ-38-t0r" id="Qsz-RU-jak"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -73,64 +46,102 @@
                                     </barButtonItemAppearance>
                                 </toolbarAppearance>
                             </toolbar>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageView" preservesSuperviewLayoutMargins="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38i-9J-lag" userLabel="ImageEditor">
-                                <rect key="frame" x="10" y="98" width="394" height="710"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageView" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38i-9J-lag" userLabel="ImageEditor">
+                                <rect key="frame" x="5" y="93" width="404" height="720"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
-                                <rect key="frame" x="193" y="121" width="28" height="34"/>
+                            <textField opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
+                                <rect key="frame" x="179" y="121" width="56" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="vjv-I9-2sg"/>
+                                    <constraint firstAttribute="height" constant="40" id="vjv-I9-2sg"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="0es-77-LEq"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
-                                <rect key="frame" x="177" y="751" width="60" height="34"/>
+                            <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
+                                <rect key="frame" x="162.5" y="745" width="89" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="QcC-VS-uOw"/>
+                                    <constraint firstAttribute="height" constant="40" id="QcC-VS-uOw"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="2K0-0y-IkA"/>
+                                </connections>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhG-nZ-RZc">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pYF-7V-6kY"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="folder" catalog="system" width="254" springLoaded="YES" style="plain" id="LJg-KB-jz5">
+                                        <connections>
+                                            <action selector="pickAnLibraryImage:" destination="BYZ-38-t0r" id="20b-5E-ZRD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="camera" catalog="system" springLoaded="YES" style="plain" id="f8W-uD-8w6">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="CaW-vj-aBz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="68" style="plain" systemItem="fixedSpace" id="Ehe-6X-qyG"/>
+                                </items>
+                                <toolbarAppearance key="compactAppearance">
+                                    <barButtonItemAppearance key="buttonAppearance">
+                                        <barButtonItemStateAppearance key="normal"/>
+                                        <barButtonItemStateAppearance key="highlighted"/>
+                                        <barButtonItemStateAppearance key="disabled"/>
+                                        <barButtonItemStateAppearance key="focused"/>
+                                    </barButtonItemAppearance>
+                                    <barButtonItemAppearance key="doneButtonAppearance">
+                                        <barButtonItemStateAppearance key="normal"/>
+                                        <barButtonItemStateAppearance key="highlighted"/>
+                                        <barButtonItemStateAppearance key="disabled"/>
+                                        <barButtonItemStateAppearance key="focused"/>
+                                    </barButtonItemAppearance>
+                                </toolbarAppearance>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="38i-9J-lag" firstAttribute="top" secondItem="Q5h-Q7-G05" secondAttribute="bottom" constant="10" id="3aq-gM-GxX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="38i-9J-lag" secondAttribute="trailing" constant="10" id="4NH-mJ-3Ff"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="leading" secondItem="QhG-nZ-RZc" secondAttribute="leading" id="EJJ-AQ-1D7"/>
                             <constraint firstItem="QhG-nZ-RZc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="I0a-Af-Lt6"/>
+                            <constraint firstAttribute="trailing" secondItem="38i-9J-lag" secondAttribute="trailing" constant="5" id="KLV-da-clZ"/>
                             <constraint firstItem="D5m-ha-JNJ" firstAttribute="top" secondItem="Q5h-Q7-G05" secondAttribute="bottom" constant="33" id="T3Y-JJ-5QO"/>
                             <constraint firstItem="Tnc-Xb-aeZ" firstAttribute="centerX" secondItem="QhG-nZ-RZc" secondAttribute="centerX" id="VG5-6R-cAI"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xyh-GY-sSi"/>
                             <constraint firstAttribute="trailing" secondItem="Q5h-Q7-G05" secondAttribute="trailing" id="gmG-Yh-HSs"/>
                             <constraint firstItem="QhG-nZ-RZc" firstAttribute="top" secondItem="Tnc-Xb-aeZ" secondAttribute="bottom" constant="33" id="h7H-Ff-msL"/>
+                            <constraint firstItem="QhG-nZ-RZc" firstAttribute="top" secondItem="38i-9J-lag" secondAttribute="bottom" constant="5" id="hOu-E9-j54"/>
+                            <constraint firstItem="38i-9J-lag" firstAttribute="top" secondItem="Q5h-Q7-G05" secondAttribute="bottom" constant="5" id="kGG-8D-yvg"/>
                             <constraint firstItem="D5m-ha-JNJ" firstAttribute="centerX" secondItem="Q5h-Q7-G05" secondAttribute="centerX" id="oUH-mx-5Jg"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="qwY-Vd-wmr"/>
-                            <constraint firstItem="QhG-nZ-RZc" firstAttribute="top" secondItem="38i-9J-lag" secondAttribute="bottom" constant="10" id="uE5-Yq-BAk"/>
-                            <constraint firstItem="38i-9J-lag" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xyh-lP-3eg"/>
+                            <constraint firstItem="38i-9J-lag" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="uFp-2Y-Fzx"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="trailing" secondItem="QhG-nZ-RZc" secondAttribute="trailing" id="yrF-cY-4ZA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="albunsButton" destination="LJg-KB-jz5" id="sWj-4N-X7x"/>
                         <outlet property="bottomTextField" destination="Tnc-Xb-aeZ" id="Y5U-tD-ZHz"/>
-                        <outlet property="bottomToolBar" destination="QhG-nZ-RZc" id="HWL-98-GUi"/>
                         <outlet property="cameraButton" destination="f8W-uD-8w6" id="ZZo-6n-lxC"/>
+                        <outlet property="cancel" destination="EVi-bX-Ixn" id="O23-2h-NSP"/>
                         <outlet property="imageEditor" destination="38i-9J-lag" id="sii-NX-Mmr"/>
-                        <outlet property="save" destination="EVi-bX-Ixn" id="gV6-89-79D"/>
                         <outlet property="senderImage" destination="EmH-CD-apD" id="ytT-ZQ-aw7"/>
                         <outlet property="topTextField" destination="D5m-ha-JNJ" id="0PN-KY-7ht"/>
-                        <outlet property="topToolBar" destination="Q5h-Q7-G05" id="zPh-cf-U6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
