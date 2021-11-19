@@ -10,9 +10,6 @@ import PhotosUI
 import NotificationCenter
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    var topText = String()
-    var bottomText = String()
 
     @IBOutlet weak var imageEditor: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -20,6 +17,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var albunsButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var senderImage: UIBarButtonItem!
+    @IBOutlet weak var topToolBar: UIToolbar!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
+    @IBOutlet weak var save: UIBarButtonItem!
     
     var itemProviders: [NSItemProvider] = []
     var interactor: IndexingIterator<[NSItemProvider]>?
@@ -33,10 +33,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         subscribeToKeyboardNotifications()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
@@ -60,10 +58,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(controller, animated: true, completion: nil)
     }
+    @IBAction func save(_ sender: Any) {
+        let _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageEditor.image!)
+    }
 }
 
 extension ViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        hideToolbar(true)
         dismiss(animated: true, completion: nil)
         let identifiars: [String] = results.compactMap(\.assetIdentifier)
         let _ = PHAsset.fetchAssets(withLocalIdentifiers: identifiars, options: nil)
@@ -74,35 +76,23 @@ extension ViewController: PHPickerViewControllerDelegate {
             DispatchQueue.main.async {
                 guard let self = self, let image = image as? UIImage, self.imageEditor.image == firstImage else {return}
                 self.imageEditor.image = image
-                self.topTextField.text? = self.topText
-                self.bottomTextField.text? = self.bottomText
-                self.hidesBottomBarWhenPushed = true
             }
             }
         }
-    }
-    func generateMemedImage() -> UIImage{
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return memedImage
+        hideToolbar(false)
     }
 }
 extension ViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let topText = UITextField()
-        let bottomText = UITextField()
-        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        textField.delegate = self
+        let textField: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.white,
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSAttributedString.Key.strokeWidth:  15
         ]
-        let newTextTop = topText
-        let newTextBottom = bottomText
-        newTextTop.defaultTextAttributes = memeTextAttributes
-        newTextBottom.defaultTextAttributes = memeTextAttributes
+        topTextField.defaultTextAttributes = textField
+        bottomTextField.defaultTextAttributes = textField
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -122,32 +112,24 @@ extension ViewController: UITextFieldDelegate{
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIWindow.keyboardWillShowNotification, object: nil)
     }
-//    func save() {
-//        let _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageEditor.image!)
-//    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-     let topText = UITextField()
-     let bottomText = UITextField()
-     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-         NSAttributedString.Key.strokeColor: UIColor.white,
-         NSAttributedString.Key.foregroundColor: UIColor.black,
-         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-         NSAttributedString.Key.strokeWidth:  15
-     ]
-     let newTextTop = topText
-     let newTextBottom = bottomText
-     newTextTop.defaultTextAttributes = memeTextAttributes
-     newTextBottom.defaultTextAttributes = memeTextAttributes
- }
+    func hideToolbar(_ visibility: Bool) {
+        if !visibility{
+            topToolBar.isHidden = true
+            bottomToolBar.isHidden = true
+        } else if visibility {
+            topToolBar.isHidden = false
+            bottomToolBar.isHidden = false
+        }
+    }
 }
-//class Meme{
-//    var topText: String = "TopText"
-//    var bottomText: String = "BottomText"
-//    let originalImage: UIImage
-//
-//    init(topText: String, bottomText: String, originalImage: UIImage) {
-//        self.topText = topText
-//        self.bottomText = bottomText
-//        self.originalImage = originalImage
-//    }
-//}
+class Meme {
+    var topText = "TopText"
+     var bottomText = "BottomText"
+     var originalImage = UIImage()
+    
+    init(topText: String, bottomText: String, originalImage: UIImage){
+        self.topText = topText
+        self.bottomText = bottomText
+        self.originalImage = originalImage
+    }
+}
