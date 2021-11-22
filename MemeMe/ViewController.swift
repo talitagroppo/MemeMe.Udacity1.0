@@ -69,6 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func cancel(_ sender: Any) {
         self.topTextField.text = "Top"
         self.bottomTextField.text = "Bottom"
+        self.senderImage.isEnabled = false
         self.imageEditor.image = nil
     }
 }

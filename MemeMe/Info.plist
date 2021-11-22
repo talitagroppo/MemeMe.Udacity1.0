@@ -6,8 +6,6 @@
 	<string>The apps need permition to access your photo library.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The app need access your camera</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The apps need access your photo library.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

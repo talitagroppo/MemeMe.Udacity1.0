@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="height" constant="40" id="vjv-I9-2sg"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="0es-77-LEq"/>
