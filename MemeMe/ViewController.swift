@@ -70,15 +70,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func pickAnLibraryImage(_ sender: Any) {
         let photoLibrary = PHPhotoLibrary.shared()
         var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
-        configuration.selectionLimit = 0
+        configuration.selectionLimit = 10
         let pickerImage = PHPickerViewController(configuration: configuration)
         pickerImage.delegate = self
         present(pickerImage, animated: true, completion: nil)
     }
     @IBAction func senderImage(_ sender: Any) {
-        let image = UIImage()
         let textField = UITextField()
-        let controller = UIActivityViewController(activityItems: [image, textField], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [imageEditor.image, textField], applicationActivities: nil)
+        controller.popoverPresentationController?.sourceView = self.view
         present(controller, animated: true, completion: nil)
     }
     @IBAction func textField() {
