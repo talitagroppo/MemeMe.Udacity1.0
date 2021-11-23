@@ -76,8 +76,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(pickerImage, animated: true, completion: nil)
     }
     @IBAction func senderImage(_ sender: Any) {
+        guard let image = imageEditor.image else { return }
         let textField = UITextField()
-        let controller = UIActivityViewController(activityItems: [imageEditor.image, textField], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [image, textField], applicationActivities: nil)
         controller.popoverPresentationController?.sourceView = self.view
         present(controller, animated: true, completion: nil)
     }
