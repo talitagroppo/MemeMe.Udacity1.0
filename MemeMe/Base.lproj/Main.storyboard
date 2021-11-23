@@ -46,37 +46,40 @@
                                     </barButtonItemAppearance>
                                 </toolbarAppearance>
                             </toolbar>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageView" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38i-9J-lag" userLabel="ImageEditor">
+                            <imageView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageView" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38i-9J-lag" userLabel="ImageEditor">
                                 <rect key="frame" x="5" y="93" width="404" height="720"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" adjustable="YES"/>
+                                </accessibility>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
+                            <textField opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="justified" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
                                 <rect key="frame" x="179" y="121" width="56" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES"/>
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vjv-I9-2sg"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="0es-77-LEq"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
+                            <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="justified" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
                                 <rect key="frame" x="162.5" y="745" width="89" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES"/>
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="QcC-VS-uOw"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="2K0-0y-IkA"/>
                                 </connections>
@@ -87,17 +90,17 @@
                                     <constraint firstAttribute="height" constant="44" id="pYF-7V-6kY"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="folder" catalog="system" width="254" springLoaded="YES" style="plain" id="LJg-KB-jz5">
+                                    <barButtonItem image="folder" catalog="system" springLoaded="YES" style="plain" id="LJg-KB-jz5">
                                         <connections>
                                             <action selector="pickAnLibraryImage:" destination="BYZ-38-t0r" id="20b-5E-ZRD"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1rj-aF-3Jx"/>
                                     <barButtonItem image="camera" catalog="system" springLoaded="YES" style="plain" id="f8W-uD-8w6">
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="CaW-vj-aBz"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="68" style="plain" systemItem="fixedSpace" id="Ehe-6X-qyG"/>
                                 </items>
                                 <toolbarAppearance key="compactAppearance">
                                     <barButtonItemAppearance key="buttonAppearance">
