@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7056B33274E763300DC8E18 /* KeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7056B32274E763200DC8E18 /* KeyboardNotification.swift */; };
+		D7056B35274E767600DC8E18 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7056B34274E767600DC8E18 /* TextField.swift */; };
+		D773FD4F274E30A000532F26 /* MemeMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773FD4E274E30A000532F26 /* MemeMe.swift */; };
 		D79F97CE274265E900741580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97CD274265E900741580 /* AppDelegate.swift */; };
 		D79F97D0274265E900741580 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97CF274265E900741580 /* SceneDelegate.swift */; };
 		D79F97D2274265E900741580 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97D1274265E900741580 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D7056B32274E763200DC8E18 /* KeyboardNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardNotification.swift; sourceTree = "<group>"; };
+		D7056B34274E767600DC8E18 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D773FD4E274E30A000532F26 /* MemeMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMe.swift; sourceTree = "<group>"; };
 		D79F97CA274265E900741580 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79F97CD274265E900741580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D79F97CF274265E900741580 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +65,9 @@
 				D79F97CD274265E900741580 /* AppDelegate.swift */,
 				D79F97CF274265E900741580 /* SceneDelegate.swift */,
 				D79F97D1274265E900741580 /* ViewController.swift */,
+				D7056B34274E767600DC8E18 /* TextField.swift */,
+				D7056B32274E763200DC8E18 /* KeyboardNotification.swift */,
+				D773FD4E274E30A000532F26 /* MemeMe.swift */,
 				D79F97D3274265E900741580 /* Main.storyboard */,
 				D79F97D6274265EA00741580 /* Assets.xcassets */,
 				D79F97D8274265EA00741580 /* LaunchScreen.storyboard */,
@@ -138,7 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7056B33274E763300DC8E18 /* KeyboardNotification.swift in Sources */,
 				D79F97D2274265E900741580 /* ViewController.swift in Sources */,
+				D773FD4F274E30A000532F26 /* MemeMe.swift in Sources */,
+				D7056B35274E767600DC8E18 /* TextField.swift in Sources */,
 				D79F97CE274265E900741580 /* AppDelegate.swift in Sources */,
 				D79F97D0274265E900741580 /* SceneDelegate.swift in Sources */,
 			);

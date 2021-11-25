@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import NotificationCenter
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var imageEditor: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -18,11 +18,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var senderImage: UIBarButtonItem!
     @IBOutlet weak var cancel: UIBarButtonItem!
+    @IBOutlet weak var toolBarButtom: UIToolbar!
+    @IBOutlet weak var toolBarTop: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         senderImage.isEnabled = false
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,57 +36,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeToKeyboardNotifications()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    @IBAction func textField(_ sender: UITextField) {
+        
     }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if bottomTextField.isFirstResponder {
-            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
-        }
+    @IBAction func pickImage(_ sender: Any) {
+        let cameraButton = UIImagePickerController()
+        cameraButton.delegate = self
+        cameraButton.sourceType = .camera
+        present(cameraButton, animated: true, completion: nil)
+        let photoLibrary = UIImagePickerController()
+        photoLibrary.delegate = self
+        photoLibrary.sourceType = .photoLibrary
+        present(photoLibrary, animated: true, completion: nil)
     }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        view.frame.origin.y = 0
-    }
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.cgRectValue.height
-    }
-    func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-    func unsubscribeToKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-    
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
-    }
-    @IBAction func pickAnLibraryImage(_ sender: Any) {
-        let photoLibrary = PHPhotoLibrary.shared()
-        var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
-        configuration.selectionLimit = 10
-        let pickerImage = PHPickerViewController(configuration: configuration)
-        pickerImage.delegate = self
-        present(pickerImage, animated: true, completion: nil)
-    }
-    @IBAction func senderImage(_ sender: Any) {
+  
+    @IBAction func senderImage(_ sender: UIButton) {
         guard let image = imageEditor.image else { return }
         let textField = UITextField()
         let controller = UIActivityViewController(activityItems: [image, textField], applicationActivities: nil)
+        controller.completionWithItemsHandler = { activit, item, success, error in
+            if (success != nil) {
+                self.save()
+            } else {
+                print("Check the code")
+            }
+        }
         controller.popoverPresentationController?.sourceView = self.view
         present(controller, animated: true, completion: nil)
-    }
-    @IBAction func textField() {
-        self.textFieldDidBeginEditing(topTextField)
     }
   
     @IBAction func cancel(_ sender: Any) {
@@ -92,39 +71,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.senderImage.isEnabled = false
         self.imageEditor.image = nil
     }
+    func save() {
+        let topText = "Top"
+        let bottomText = "Bottom"
+        let images = imageEditor.image!
+    let meMeme = MemeMe(topTextField: topText, bottomTextField: bottomText, imagemEditor: images)
+        (UIApplication.shared.delegate as! AppDelegate).newData.append(meMeme)
+    }
+    func generateMemedImage() -> UIImage {
+        toolBarTop.isHidden = true
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        toolBarTop.isHidden = false
+
+        return memedImage
+    }
 }
 
-extension ViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        senderImage.isEnabled = true
-        dismiss(animated: true, completion: nil)
-        let identifiars: [String] = results.compactMap(\.assetIdentifier)
-        let _ = PHAsset.fetchAssets(withLocalIdentifiers: identifiars, options: nil)
-        if let provideImage = results.first?.itemProvider,
-           provideImage.canLoadObject(ofClass: UIImage.self){
-            let firstImage = imageEditor.image
-            provideImage.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                DispatchQueue.main.async {
-                    guard let self = self, let image = image as? UIImage, self.imageEditor.image == firstImage else {return}
-                    self.imageEditor.image = image
-                }
-            }
-        }
-    }
-}
-extension ViewController: UITextFieldDelegate{
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-        dismiss(animated: true, completion: nil)
-        let textField: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.white,
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  5
-        ]
-        topTextField.defaultTextAttributes = textField
-        bottomTextField.defaultTextAttributes = textField
-    }
-}
+
 
