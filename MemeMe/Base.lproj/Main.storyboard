@@ -50,14 +50,14 @@
                                 <rect key="frame" x="0.0" y="93" width="429" height="720"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" adjustable="YES"/>
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
                                 </accessibility>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="top" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
-                                <rect key="frame" x="30" y="121" width="364" height="40"/>
+                            <textField opaque="NO" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
+                                <rect key="frame" x="20" y="121" width="374" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                    <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="X3e-iK-AKi"/>
@@ -70,10 +70,10 @@
                                     <action selector="textField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="UtE-K5-flR"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
-                                <rect key="frame" x="30" y="745" width="354" height="40"/>
+                            <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
+                                <rect key="frame" x="20" y="745" width="374" height="40"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                    <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Tnp-Xh-Uj5"/>
@@ -135,7 +135,7 @@
                             <constraint firstItem="D5m-ha-JNJ" firstAttribute="leading" secondItem="Tnc-Xb-aeZ" secondAttribute="leading" id="dI2-F8-EhQ"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="leading" secondItem="QhG-nZ-RZc" secondAttribute="leading" id="dxO-Vt-M3I"/>
                             <constraint firstItem="Q5h-Q7-G05" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eFN-eb-vMj"/>
-                            <constraint firstItem="D5m-ha-JNJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eym-IG-rKT"/>
+                            <constraint firstItem="D5m-ha-JNJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="i2o-l3-rm0"/>
                             <constraint firstItem="QhG-nZ-RZc" firstAttribute="top" secondItem="38i-9J-lag" secondAttribute="bottom" constant="5" id="tfx-E0-Wfp"/>
                             <constraint firstItem="38i-9J-lag" firstAttribute="top" secondItem="Q5h-Q7-G05" secondAttribute="bottom" constant="5" id="xub-9z-5U2"/>
                         </constraints>

@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import NotificationCenter
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var imageEditor: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -88,7 +88,27 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let textField: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth: -1
+            ]
+        topTextField.defaultTextAttributes = textField
+        bottomTextField.defaultTextAttributes = textField
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let numerCharacter = textField.text?.count{
+            return numerCharacter <= 10
+        }
+        return (0 != 0)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
-
 
 
