@@ -12,4 +12,5 @@ struct MemeMe {
     var topTextField: String! = "Top"
     var bottomTextField: String! = "Bottom"
     var imagemEditor: UIImage!
+    var newImage: UIImage!
 }

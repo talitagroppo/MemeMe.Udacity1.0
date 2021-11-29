@@ -9,54 +9,49 @@ import UIKit
 import PhotosUI
 import NotificationCenter
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageEditor: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var albunsButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var albunsButton: UIBarButtonItem!
     @IBOutlet weak var senderImage: UIBarButtonItem!
     @IBOutlet weak var cancel: UIBarButtonItem!
-    @IBOutlet weak var toolBarButtom: UIToolbar!
-    @IBOutlet weak var toolBarTop: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         senderImage.isEnabled = false
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
-    }
+        }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unsubscribeToKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
-    
-    @IBAction func textField(_ sender: UITextField) {
-        
+    @IBAction func textField(_ sender: UITextField){
+        textFieldDidBeginEditing(sender)
+        sender.delegate = self
     }
-    @IBAction func pickImage(_ sender: Any) {
-        let cameraButton = UIImagePickerController()
-        cameraButton.delegate = self
-        cameraButton.sourceType = .camera
-        present(cameraButton, animated: true, completion: nil)
-        let photoLibrary = UIImagePickerController()
-        photoLibrary.delegate = self
-        photoLibrary.sourceType = .photoLibrary
-        present(photoLibrary, animated: true, completion: nil)
+    @IBAction func pickerImage(_ sender: UIBarButtonItem) {
+        if (sender == cameraButton){
+            sourceController(controller: .camera)
+        } else {
+            sourceController(controller: .photoLibrary)
+        }
     }
-  
-    @IBAction func senderImage(_ sender: UIButton) {
+
+    @IBAction func senderImage(_ sender: UIBarButtonItem) {
+        let showImage = generateMemedImage()
         guard let image = imageEditor.image else { return }
         let textField = UITextField()
         let controller = UIActivityViewController(activityItems: [image, textField], applicationActivities: nil)
         controller.completionWithItemsHandler = { activit, item, success, error in
             if (success != nil) {
-                self.save()
+                self.save(showImage)
             } else {
                 print("Check the code")
             }
@@ -71,23 +66,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate {
         self.senderImage.isEnabled = false
         self.imageEditor.image = nil
     }
-    func save() {
-        let topText = "Top"
-        let bottomText = "Bottom"
-        let images = imageEditor.image!
-    let meMeme = MemeMe(topTextField: topText, bottomTextField: bottomText, imagemEditor: images)
-        (UIApplication.shared.delegate as! AppDelegate).newData.append(meMeme)
+  
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+               NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
-    func generateMemedImage() -> UIImage {
-        toolBarTop.isHidden = true
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+                NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    @objc func keyboardWillShow(_ notification:Notification) {
+        view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        view.frame.origin.y = 0
+    }
 
-        toolBarTop.isHidden = false
-
-        return memedImage
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
     }
 }
 

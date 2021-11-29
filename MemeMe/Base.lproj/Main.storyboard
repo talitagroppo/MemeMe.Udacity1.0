@@ -19,7 +19,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5h-Q7-G05">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem springLoaded="YES" systemItem="action" id="EmH-CD-apD">
+                                    <barButtonItem image="square.and.arrow.up" catalog="system" springLoaded="YES" id="EmH-CD-apD">
                                         <connections>
                                             <action selector="senderImage:" destination="BYZ-38-t0r" id="4HP-v4-7dB"/>
                                         </connections>
@@ -54,31 +54,35 @@
                                 </accessibility>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="10" bottom="10" trailing="10"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
+                            <textField opaque="NO" contentMode="top" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-ha-JNJ" userLabel="top">
                                 <rect key="frame" x="30" y="121" width="364" height="40"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="X3e-iK-AKi"/>
                                 </constraints>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="textField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="QI1-dz-NaG"/>
-                                    <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="0es-77-LEq"/>
+                                    <action selector="textField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="UtE-K5-flR"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="40" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-Xb-aeZ" userLabel="bottom">
                                 <rect key="frame" x="30" y="745" width="354" height="40"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Tnp-Xh-Uj5"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="textField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Vmi-GW-M61"/>
-                                    <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="2K0-0y-IkA"/>
+                                    <action selector="textField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="zKX-CG-o5I"/>
                                 </connections>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhG-nZ-RZc">
@@ -89,13 +93,13 @@
                                 <items>
                                     <barButtonItem image="folder" catalog="system" springLoaded="YES" style="plain" id="LJg-KB-jz5">
                                         <connections>
-                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="3ce-Fj-4bh"/>
+                                            <action selector="pickerImage:" destination="BYZ-38-t0r" id="YP6-xS-l3y"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1rj-aF-3Jx"/>
                                     <barButtonItem image="camera" catalog="system" springLoaded="YES" style="plain" id="f8W-uD-8w6">
                                         <connections>
-                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="FgK-qz-Uuy"/>
+                                            <action selector="pickerImage:" destination="BYZ-38-t0r" id="syX-em-dII"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -137,14 +141,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="albunsButton" destination="LJg-KB-jz5" id="sWj-4N-X7x"/>
+                        <outlet property="albunsButton" destination="LJg-KB-jz5" id="3dJ-KQ-Hhl"/>
                         <outlet property="bottomTextField" destination="Tnc-Xb-aeZ" id="Y5U-tD-ZHz"/>
                         <outlet property="cameraButton" destination="f8W-uD-8w6" id="ZZo-6n-lxC"/>
                         <outlet property="cancel" destination="EVi-bX-Ixn" id="O23-2h-NSP"/>
                         <outlet property="imageEditor" destination="38i-9J-lag" id="sii-NX-Mmr"/>
                         <outlet property="senderImage" destination="EmH-CD-apD" id="ytT-ZQ-aw7"/>
-                        <outlet property="toolBarButtom" destination="QhG-nZ-RZc" id="MbA-VI-sH9"/>
-                        <outlet property="toolBarTop" destination="Q5h-Q7-G05" id="uyj-1H-dJh"/>
                         <outlet property="topTextField" destination="D5m-ha-JNJ" id="0PN-KY-7ht"/>
                     </connections>
                 </viewController>
@@ -156,6 +158,7 @@
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="folder" catalog="system" width="128" height="97"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
