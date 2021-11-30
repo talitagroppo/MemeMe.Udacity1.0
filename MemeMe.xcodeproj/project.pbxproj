@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D773FD4F274E30A000532F26 /* MemeMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D773FD4E274E30A000532F26 /* MemeMe.swift */; };
-		D7818A6927550E130045AEAE /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7818A6827550E120045AEAE /* ImageViewController.swift */; };
 		D79F97CE274265E900741580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97CD274265E900741580 /* AppDelegate.swift */; };
 		D79F97D0274265E900741580 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97CF274265E900741580 /* SceneDelegate.swift */; };
 		D79F97D2274265E900741580 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79F97D1274265E900741580 /* ViewController.swift */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		D773FD4E274E30A000532F26 /* MemeMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMe.swift; sourceTree = "<group>"; };
-		D7818A6827550E120045AEAE /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		D79F97CA274265E900741580 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79F97CD274265E900741580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D79F97CF274265E900741580 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 				D79F97CD274265E900741580 /* AppDelegate.swift */,
 				D79F97CF274265E900741580 /* SceneDelegate.swift */,
 				D79F97D1274265E900741580 /* ViewController.swift */,
-				D7818A6827550E120045AEAE /* ImageViewController.swift */,
 				D773FD4E274E30A000532F26 /* MemeMe.swift */,
 				D79F97D3274265E900741580 /* Main.storyboard */,
 				D79F97D6274265EA00741580 /* Assets.xcassets */,
@@ -146,7 +143,6 @@
 			files = (
 				D79F97D2274265E900741580 /* ViewController.swift in Sources */,
 				D773FD4F274E30A000532F26 /* MemeMe.swift in Sources */,
-				D7818A6927550E130045AEAE /* ImageViewController.swift in Sources */,
 				D79F97CE274265E900741580 /* AppDelegate.swift in Sources */,
 				D79F97D0274265E900741580 /* SceneDelegate.swift in Sources */,
 			);
@@ -308,6 +304,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -342,6 +339,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

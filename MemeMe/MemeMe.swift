@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct MemeMe {
-    var topTextField: String! = "Top"
-    var bottomTextField: String! = "Bottom"
+    var topTextField: String!
+    var bottomTextField: String!
     var imagemEditor: UIImage!
-    var newImage: UIImage!
+    var memedImage: UIImage!
 }
