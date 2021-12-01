@@ -127,13 +127,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         return memedImage
     }
     func  hideAndShowBars(_ hide: Bool) {
-        if !hide {
-            toolBarTop.isHidden = false
-            toolBarBottom.isHidden = false
-        } else {
-            toolBarTop.isHidden = hide
-            toolBarBottom.isHidden = hide
-        } 
+         toolBarTop.isHidden = hide
+        toolBarBottom.isHidden = hide
     }
     
     func subscribeToKeyboardNotifications() {
