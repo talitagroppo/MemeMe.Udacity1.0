@@ -55,11 +55,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         guard let topText = topTextField.text else { return }
         guard let bottomText = bottomTextField.text else { return }
         let controller = UIActivityViewController(activityItems: [image, topText, bottomText], applicationActivities: nil)
-        controller.completionWithItemsHandler = {(activityItems, image, topText, bottomText) in
-            if (activityItems != nil) {
-                self.save(showImage)
+        controller.completionWithItemsHandler = {(activity, completed, items, error) in
+            if completed {
+            self.save(showImage)
             } else {
-                print("Check the code")
+                self.start()
             }
         }
         controller.popoverPresentationController?.sourceView = self.view
@@ -79,10 +79,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let textFieldAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.black,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth: -1
+          .strokeColor: UIColor.black,
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            .strokeWidth: -3.0
         ]
         textField.defaultTextAttributes = textFieldAttributes
     }
@@ -103,7 +103,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
     }
     
-    func textFields(){
+        func textFields(){
+        setupTextField(topTextField, text: "TOP")
+        setupTextField(bottomTextField, text: "BOTTOM")
+
+    }
+    
+    func setupTextField(_ textField: UITextField, text: String){
         topTextField.delegate = self
         topTextField.textAlignment = .center
         topTextField.adjustsFontSizeToFitWidth = true
@@ -113,18 +119,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
         bottomTextField.textAlignment = .center
         bottomTextField.adjustsFontSizeToFitWidth = true
         bottomTextField.minimumFontSize = 10.0
-
     }
-    func generateMemedImage() -> UIImage {
-        toolBarTop.isHidden = true
-        toolBarBottom.isHidden = true
+    
+        func generateMemedImage() -> UIImage {
+        hideAndShowBars(true)
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        toolBarTop.isHidden = false
-        toolBarBottom.isHidden = false
+        hideAndShowBars(false)
         return memedImage
+    }
+    func  hideAndShowBars(_ hide: Bool) {
+        if !hide {
+            toolBarTop.isHidden = false
+            toolBarBottom.isHidden = false
+        } else {
+            toolBarTop.isHidden = true
+            toolBarBottom.isHidden = true
+        }
     }
     
     func subscribeToKeyboardNotifications() {
@@ -137,10 +150,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITextFi
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        if topTextField.isEditing{
-        topTextField.frame.origin.y = -getKeyboardHeight(notification) - view.frame.origin.y
-        } else{
+            if bottomTextField.isFirstResponder{
         view.frame.origin.y = -getKeyboardHeight(notification)
+        } else{
+        topTextField.frame.origin.y = getKeyboardHeight(notification)
         }
     }
     
